@@ -1,0 +1,17 @@
+{
+    "name": "ib/benchmark",
+    "type": "library",
+    "description": "benchmark testing tool for PHP",
+    "authors": [
+        {
+            "name": "Ivan Barlog",
+            "email": "ivan.barlog@everlution.sk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ib\\": ""
+        }
+    },
+    "require": {}
+}

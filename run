@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build -f docker/Dockerfile -t benchmark .
+docker run benchmark
