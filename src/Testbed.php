@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ib;
 
 /**
@@ -24,12 +22,12 @@ class Testbed
 
     const DESCRIPTION = 'description';
 
-    public function __construct(string $difficulty = self::LOW_DIFFICULTY)
+    public function __construct($difficulty = self::LOW_DIFFICULTY)
     {
         $this->difficulty = $difficulty;
     }
 
-    public function setDifficulty(string $difficulty)
+    public function setDifficulty($difficulty)
     {
         if (false === in_array($difficulty, [self::LOW_DIFFICULTY, self::MEDIUM_DIFFICULTY, self::HIGH_DIFFICULTY])) {
             throw new \LogicException(sprintf("%s difficulty is not supported", $difficulty));

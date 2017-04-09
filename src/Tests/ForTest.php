@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ib\Tests;
 
 use ib\Test;
@@ -12,7 +10,7 @@ use ib\Test;
  */
 class ForTest extends LoopTest implements Test
 {
-    public function testCase(): callable
+    public function testCase()
     {
         $data = $this->data;
 
@@ -24,7 +22,7 @@ class ForTest extends LoopTest implements Test
         };
     }
 
-    public function description(): string
+    public function description()
     {
         return "for loop test\nconcatenates thousand words within for loop";
     }

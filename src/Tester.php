@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ib;
 
 /**
@@ -41,7 +39,7 @@ class Tester
         return self::$meanTime;
     }
 
-    private static function run(callable $test, int $cycles)
+    private static function run(callable $test, $cycles)
     {
         self::reset($cycles);
         self::test($test, $cycles);
@@ -49,7 +47,7 @@ class Tester
         self::calculateMeanTime($cycles);
     }
 
-    private static function test(callable $test, int $cycles)
+    private static function test(callable $test, $cycles)
     {
         printf("Starting the test...\n");
         $start = microtime(true);
@@ -62,7 +60,7 @@ class Tester
         printf("Test ended. (%10.6f)\n", $end - $start);
     }
 
-    private static function calculateMeanTime(int $cycles)
+    private static function calculateMeanTime($cycles)
     {
         printf("Calculating mean time\n");
         $start = microtime(true);
@@ -76,7 +74,7 @@ class Tester
         printf("Mean time calculated (%10.6f)\n", $end - $start);
     }
 
-    private static function calculateDifferences(int $cycles)
+    private static function calculateDifferences($cycles)
     {
         printf("Calculating differences\n");
         $start = microtime(true);
@@ -87,7 +85,7 @@ class Tester
         printf("Differences calculated (%10.6f)\n", $end - $start);
     }
 
-    private static function reset(int $cycles)
+    private static function reset($cycles)
     {
         self::$times = [];
         self::$meanTime = 0;

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace ib;
 
 /**
@@ -10,7 +8,13 @@ namespace ib;
  */
 interface Test
 {
-    public function testCase(): callable;
+    /**
+     * @return callable
+     */
+    public function testCase();
 
-    public function description(): string;
+    /**
+     * @return string
+     */
+    public function description();
 }
