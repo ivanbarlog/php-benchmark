@@ -10,13 +10,13 @@ namespace ib;
  */
 class Tester
 {
-    private const LOW_CYCLES    = 10000;
-    private const MEDIUM_CYCLES = 100000;
-    private const HIGH_CYCLES   = 1000000;
+    const LOW_CYCLES    = 10000;
+    const MEDIUM_CYCLES = 100000;
+    const HIGH_CYCLES   = 1000000;
 
-    private const START = 'start';
-    private const END = 'end';
-    private const DIFF = 'diff';
+    const START = 'start';
+    const END = 'end';
+    const DIFF = 'diff';
 
     private static $times = [];
     private static $meanTime = null;
@@ -67,7 +67,7 @@ class Tester
         printf("Calculating mean time\n");
         $start = microtime(true);
         for ($i = 0; $i < $cycles; ++$i) {
-            self::$meanTime += self::$times[self::DIFF];
+            self::$meanTime += self::$times[$i][self::DIFF];
         }
 
         self::$meanTime = self::$meanTime / $cycles;

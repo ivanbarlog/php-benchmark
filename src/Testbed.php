@@ -10,13 +10,19 @@ namespace ib;
  */
 class Testbed
 {
-    public const LOW_DIFFICULTY = 'low';
-    public const MEDIUM_DIFFICULTY = 'medium';
-    public const HIGH_DIFFICULTY = 'high';
+    const LOW_DIFFICULTY = 'low';
+    const MEDIUM_DIFFICULTY = 'medium';
+    const HIGH_DIFFICULTY = 'high';
 
     private $difficulty = self::LOW_DIFFICULTY;
 
     private static $results = [];
+
+    const ORDER = 'order';
+
+    const MEAN_TIME = 'meanTime';
+
+    const DESCRIPTION = 'description';
 
     public function __construct(string $difficulty = self::LOW_DIFFICULTY)
     {
@@ -31,12 +37,13 @@ class Testbed
 
         $this->difficulty = $difficulty;
     }
-    
+
     public function compare(Test ...$tests)
     {
         for ($i = 0; $i < count($tests); ++$i) {
             $test = $tests[$i];
-            printf("Running %d. test (%s difficulty)\n\n%s", $i, $this->difficulty, $test->description());
+            $order = $i + 1;
+            printf("Running %d. test (%s difficulty)\n\n%s", $order, $this->difficulty, $test->description());
 
             switch ($this->difficulty) {
                 case self::LOW_DIFFICULTY:
@@ -50,14 +57,26 @@ class Testbed
                     break;
             }
 
-            self::$results[$i] = Tester::meanTime();
+            self::$results[] = [
+                self::ORDER => $order,
+                self::MEAN_TIME => Tester::meanTime(),
+                self::DESCRIPTION => $test->description(),
+            ];
         }
 
-        $this->processResults();
+        $this->showResults();
     }
 
-    private function processResults()
+    private function showResults()
     {
-
+        printf("Test results (%s difficulty)\n######################\n", $this->difficulty);
+        foreach (self::$results as $result) {
+            printf(
+                "%d. %s\nMean time: %f\n\n",
+                $result[self::ORDER],
+                $result[self::DESCRIPTION],
+                $result[self::MEAN_TIME]
+            );
+        }
     }
 }

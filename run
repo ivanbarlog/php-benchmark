@@ -1,4 +1,26 @@
 #!/bin/bash
 
-docker build -f docker/Dockerfile -t benchmark .
-docker run benchmark
+if [ "$1" != "" ]; then
+
+    case "$1" in
+        7.1|php7.1)
+            php="php7.1"
+            ;;
+        7.0|7|php7.0)
+            php="php7.0"
+            ;;
+        5.6|5|php5.6)
+            php="php5.6"
+            ;;
+        *)
+            echo "Invalid argument - provide one from php7.1, php7.0 or php5.6 (php7.1 is default)"
+            exit
+            ;;
+    esac
+
+else
+    php="php7.1"
+fi
+
+docker build -f docker/$php/Dockerfile -t benchmark-$php .
+docker run benchmark-$php

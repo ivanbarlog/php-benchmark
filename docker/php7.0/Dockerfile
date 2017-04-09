@@ -1,4 +1,4 @@
-FROM php:cli
+FROM php:7.0-cli
 
 RUN mkdir -p /var/www/test
 ADD . /var/www/test
